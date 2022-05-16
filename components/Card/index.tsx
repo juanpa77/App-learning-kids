@@ -9,10 +9,10 @@ type Props = {}
 const MainMenuCard = (props: Props) => {
   return (
     <>
-      <Link href={'/learnToRead'}>
+      <Link href={'/map'}>
         <Card color={'#FF2D55'}>
           <PencilCartoon src={'/pencilCartoon.png'} width='137' height='211' />
-          <strong>Aprende a leer</strong>
+          {/* <strong>Aprende a leer</strong> */}
         </Card>
       </Link>
     </>

@@ -11,7 +11,7 @@ const Card = styled.div`
   cursor: pointer;
   
   & > strong {
-    font-size: 31px;
+    /* font-size: 31px; */
     margin: 2rem;
   }
 `
