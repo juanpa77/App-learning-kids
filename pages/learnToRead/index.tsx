@@ -4,48 +4,58 @@ import Button from '../../components/Button/styled'
 import Card from '../../components/Card/styled'
 import { Modal } from '../../components/modal'
 import { useModal } from '../../hooks/useModal'
-import size from './styled'
+import { Wrapper } from './styled'
 import ArrowRight from '../../components/Button/arrowRight'
-import Word from '../../components/Word/styled'
-import useLevel from '../../hooks/useLevel'
-import { useState } from 'react'
-import { motion } from "framer-motion";
+import Portal from '../../components/Portal'
+import MoleWord from '../../components/Word'
+import SelectLevel from '../../components/Select'
+import { useSelect } from '../../hooks/useSelect'
+import useLevels from '../../hooks/useLevels'
 
-export default function LearnToRead (props) {
+export default function LearnToRead () {
   const [isOpenModal, openModal, closeModal] = useModal(true)
-  const [syllable, setSyllable] = useState('')
+  const { option, handleOptions } = useSelect()
+  const { nextWord, setIsReady, setLevel, isReady, word, isOnScreen } = useLevels()
 
-  const { isReady, handell, nexLevel, start } = useLevel({ setSyllable, openModal, isOpenModal, closeModal })
-  /* const start = () => {
+  const start = () => {
+    console.log(word)
     closeModal()
-    nexLevel()
-  } */
+    setIsReady(true)
+  }
 
   return (
     <AppLayout>
-      <Card color='#FF2D55' css={size}>
-        <Word>{syllable}</Word>
-        {isReady
+      <Wrapper>
+        {isOpenModal || (
+          <MoleWord
+          area='W'
+          word={word}
+          isOnScreen={isOnScreen}
+          ></MoleWord>
+        )}
+        { isReady
           ? ''
-          : <Button onClick={handell} >
+          : <Button onClick={nextWord} >
               <ArrowRight />
             </Button>
         }
-      </Card>
-      <Modal isOpenModal={isOpenModal} >
-        <Card color='#BF5AF2'>
-          {/* <h1>HOla</h1> */}
-          <Button onClick={start}>
-            repit
-          </Button>
-          <Button onClick={nexLevel}>
-            sigiente
-          </Button>
-          <Button onClick={start}>
-            <ArrowRight />
-          </Button>
-        </Card>
-      </Modal>
+        <Portal area={'C'} />
+        <Portal area={'X'} />
+        {<Modal isOpenModal={isOpenModal} >
+          <Card color='#BF5AF2'>
+            <SelectLevel options={['1', '2']} onChange={handleOptions} />
+            <Button onClick={start}>
+              repit
+            </Button>
+            <Button onClick={start}>
+              sigiente
+            </Button>
+            <Button onClick={start}>
+              <ArrowRight />
+            </Button>
+          </Card>
+        </Modal>}
+      </Wrapper>
     </AppLayout>
   )
 }
