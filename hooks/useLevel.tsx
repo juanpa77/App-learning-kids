@@ -13,9 +13,8 @@ interface Props {
 const useLevel = ({ setSyllable, openModal, closeModal } : Props) => {
   const [level, setLevel] = useState(5)
   const [counterT, setCountert] = useState(0)
-  const { syllables, index, handell, setSyllables } = useSyllables(bySyllableGenerator)
+  const { syllables, index, handell, setSyllables } = useSyllables(syllableGenerator)
   const { isReady, setIsReady } = useTimer(handell, index)
-
   const start = () => {
     closeModal()
   }
@@ -28,7 +27,7 @@ const useLevel = ({ setSyllable, openModal, closeModal } : Props) => {
 
   const repitLevel = () => {
     closeModal()
-    console.log()
+    // console.log()
   }
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const useLevel = ({ setSyllable, openModal, closeModal } : Props) => {
 
   useEffect(() => {
     setCountert(counterT + 1)
-    console.log(counterT)
+    // console.log(counterT)
   }, [index])
 
   useEffect(() => {
@@ -45,7 +44,7 @@ const useLevel = ({ setSyllable, openModal, closeModal } : Props) => {
       setIsReady(false)
       openModal()
     }
-    console.log(isReady, counterT, level)
+    // console.log(isReady, counterT, level)
   })
 
   return { isReady, handell, nexLevel, start }
