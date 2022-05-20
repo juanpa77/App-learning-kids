@@ -1,10 +1,16 @@
 import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 
-const Card = styled.div`
+type Props = {
+  imgUrl?: string
+}
+
+const Card = styled(motion.div)`
   display: flex;
   align-items: center;
   padding: 1rem;
   background-color: ${props => props.color};
+  background-image: url(${(props: Props) => props.imgUrl});
   width: 357px;
   height: 245px;
   border-radius: 15px;
