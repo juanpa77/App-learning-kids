@@ -8,7 +8,7 @@ const useTimer = (nexAction: ()=> void, stopTimer: number) => {
     if (isReady) {
       nexAction()
       if (counter > stopTimer) setCounter(0)
-      const interval = setInterval(() => setCounter(counter + 1), 3000)
+      const interval = setInterval(() => setCounter(counter + 1), 1500)
       return () => clearInterval(interval)
     }
   }, [counter, isReady])

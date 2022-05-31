@@ -1,13 +1,10 @@
 import { useState } from 'react'
-import useTimer from './useTimer'
-import useWords from './useWords'
 
 const useLevels = () => {
-  const [level, setLevel] = useState(5)
-  const [word, nextWord, isOnScreen] = useWords()
-  const { setIsReady, isReady } = useTimer(nextWord, level)
-
-  return { isOnScreen, word, setLevel, nextWord, setIsReady, isReady }
+  const [level, setLevel] = useState(0)
+  const levelUp = () => setLevel(level + 1)
+  const levelDown = () => setLevel(level - 1)
+  return [level, levelUp, levelDown] as const
 }
 
 export default useLevels

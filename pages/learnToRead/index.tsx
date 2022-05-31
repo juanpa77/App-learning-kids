@@ -10,13 +10,14 @@ import Portal from '../../components/Portal'
 import MoleWord from '../../components/Word'
 import SelectLevel from '../../components/Select'
 import { useSelect } from '../../hooks/useSelect'
+import useStart from '../../hooks/useStart'
 import useLevels from '../../hooks/useLevels'
 
 export default function LearnToRead () {
   const [isOpenModal, openModal, closeModal] = useModal(true)
   const { option, handleOptions } = useSelect()
-  const { nextWord, setIsReady, setLevel, isReady, word, isOnScreen } = useLevels()
-
+  const { nextWord, setIsReady, setLevel, isReady, word, isOnScreen } = useStart()
+  const [level, handleLevel] = useLevels()
   const start = () => {
     console.log(word)
     closeModal()
