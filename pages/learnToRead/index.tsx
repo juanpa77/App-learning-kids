@@ -4,7 +4,7 @@ import Button from '../../components/Button/styled'
 import Card from '../../components/Card/styled'
 import { Modal } from '../../components/modal'
 import { useModal } from '../../hooks/useModal'
-import { Wrapper } from './styled'
+import { WrapperWords, WrapperControles, Wrapper } from './styled'
 import ArrowRight from '../../components/Button/arrowRight'
 import Portal from '../../components/Portal'
 import MoleWord from '../../components/Word'
@@ -14,12 +14,13 @@ import useStart from '../../hooks/useStart'
 import useLevels from '../../hooks/useLevels'
 
 export default function LearnToRead () {
-  const [isOpenModal, openModal, closeModal] = useModal(true)
-  const { option, handleOptions } = useSelect()
-  const { nextWord, setIsReady, setLevel, isReady, word, isOnScreen } = useStart()
-  const [level, handleLevel] = useLevels()
+  const [isOpenModal,, closeModal] = useModal(true)
+  const { handleOptions } = useSelect()
+  const [level, levelUp, levelDown] = useLevels()
+  const { nextWord, setIsReady, isReady, word, isOnScreen } = useStart(level)
+
   const start = () => {
-    console.log(word)
+    console.log(level)
     closeModal()
     setIsReady(true)
   }
@@ -27,16 +28,19 @@ export default function LearnToRead () {
   return (
     <AppLayout>
       <Wrapper>
-        {isOpenModal || (
+
+      <WrapperWords>
+        {isOpenModal ||
+        (
           <MoleWord
           area='W'
           word={word}
           isOnScreen={isOnScreen}
           ></MoleWord>
         )}
-        { isReady
+        {isReady
           ? ''
-          : <Button onClick={nextWord} >
+          : <Button onClick={nextWord} area='b' >
               <ArrowRight />
             </Button>
         }
@@ -56,6 +60,16 @@ export default function LearnToRead () {
             </Button>
           </Card>
         </Modal>}
+      </WrapperWords>
+      <WrapperControles>
+        <Button onClick={levelUp} >
+          +
+        </Button>
+        <Button onClick={levelDown} >
+          -
+        </Button>
+      </WrapperControles>
+      {/* wrapper controls and counter */}
       </Wrapper>
     </AppLayout>
   )

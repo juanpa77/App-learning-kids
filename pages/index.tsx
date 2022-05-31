@@ -12,6 +12,7 @@ export default function Home () {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainMenuCard link={'./learnToRead'} imgUrl='/background.jpg' />
+      <MainMenuCard link={'./addMoreVelocity'} />
     </AppLayout>
     </div>
   )
