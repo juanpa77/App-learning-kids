@@ -25,7 +25,7 @@ export const wordAnimate = {
     y: 600,
     x: 0,
     transition: {
-      duration: 0
+      duration: 0.5
     }
   }
 }

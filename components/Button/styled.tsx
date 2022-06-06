@@ -1,12 +1,18 @@
 import styled from '@emotion/styled'
 
-const Button = styled.button`
+type Props = {
+  area?: string
+  fontSize?: string
+}
+
+const Button = styled('button')`
   height: 60px;
   width: 60px;
   border-radius: 50%;
   border: solid 2px white;
+  font-size: ${(props: Props) => props.fontSize};
   background-color: #7d14a2;
-  grid-area: B;
+  grid-area: ${(props: Props) => props.area};
   cursor: pointer;
   :hover {
     background-color: white;
