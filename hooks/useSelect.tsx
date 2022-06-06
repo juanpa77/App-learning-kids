@@ -6,10 +6,12 @@ interface Props {
 } */
 
 const useSelect = () => {
-  const [option, setOption] = useState('')
+  const [option, setOption] = useState('1')
   const handleOptions = (e: ChangeEvent<HTMLSelectElement>) => {
     setOption(e.target.value)
+    console.log(option)
   }
+
   return { option, handleOptions }
 }
 

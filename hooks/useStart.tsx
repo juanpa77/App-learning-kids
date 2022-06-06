@@ -1,13 +1,15 @@
-import { useState } from 'react'
-import useTimer from './useTimer'
+import useLevel from './useContextLevel'
+// import useTimer from './useTimer'
 import useWords from './useWords'
 
-const useStart = (level: number) => {
-  const [stop, setStop] = useState(5)
-  const [word, nextWord, isOnScreen] = useWords(level)
-  const { setIsReady, isReady } = useTimer(nextWord, stop)
+const useStart = () => {
+  const { level } = useLevel()
+  // const seconds = 4 / (level.velocity + 1)
 
-  return { isOnScreen, word, setStop, nextWord, setIsReady, isReady }
+  const [word, nextWord, isOnScreen, offScreen] = useWords()
+  // const { setIsReady } = useTimer(nextWord, offScreen, seconds)
+
+  return { isOnScreen, word, nextWord /* setIsReady */ }
 }
 
 export default useStart
