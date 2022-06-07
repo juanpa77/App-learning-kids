@@ -4,61 +4,89 @@ type Props = {
   children: ReactNode
 }
 
-type Level = {
+type gameParameters = {
+  level: number
   counter: number,
-  velocity: number,
+  speed: number,
   secondsTimer: number
 }
 
 export type LevelContexType = {
-  level: Level
+  gameParameters: gameParameters
   levelUp: () => void
   levelDown: () => void
   selectLevel: (levelSelected: number) => void
+  setSecondsTimer: (second: number) => void
+  counterUp: () => void
+  counterDown: () => void
+  velocityUp: () => void
+  velocityDown: () => void
+  resetSpeed: () => void
+  setLevel: (level: number) => void
 }
 
 const initLevel: LevelContexType = {
-  level: {
+  gameParameters: {
+    level: 1,
     counter: 1,
-    velocity: 1,
+    speed: 1,
     secondsTimer: 4
   },
   levelUp: () => {},
   levelDown: () => {},
-  selectLevel: () => {}
+  selectLevel: (levelSelected: number) => {},
+  setSecondsTimer: (second: number) => {},
+  counterUp: () => {},
+  counterDown: () => {},
+  velocityUp: () => {},
+  velocityDown: () => {},
+  resetSpeed: () => {},
+  setLevel: (level: number) => {}
 }
 
 export const LevelContext = createContext<LevelContexType>(initLevel)
 
 export const LevelProvider = ({ children }: Props) => {
-  const [level, setLevel] = useState<Level>({
+  const [gameParameters, setGameParameters] = useState<gameParameters>({
+    level: 1,
     counter: 1,
-    velocity: 1,
+    speed: 1,
     secondsTimer: 4
   })
 
-  const setSecondsTimer = (second: number) => setLevel({ ...level, secondsTimer: second })
+  const setSecondsTimer = (second: number) => setGameParameters({ ...gameParameters, secondsTimer: second })
+  const selectLevel = (levelSelected: number) => setGameParameters({ ...gameParameters, counter: levelSelected })
+  const counterUp = () => setGameParameters({ ...gameParameters, counter: gameParameters.counter + 1 })
+  const counterDown = () => setGameParameters({ ...gameParameters, counter: gameParameters.counter - 1 })
+  const velocityUp = () => setGameParameters({ ...gameParameters, counter: gameParameters.speed + 1 })
+  const velocityDown = () => setGameParameters({ ...gameParameters, counter: gameParameters.speed - 1 })
+  const setLevel = (level: number) => setGameParameters({ ...gameParameters, level: level })
+  const resetSpeed = () => setGameParameters({ ...gameParameters, speed: 1 })
 
-  const selectLevel = (levelSelected: number) => setLevel({ ...level, counter: levelSelected })
-
-  const levelUp = () => setLevel({
-    ...level,
-    counter: level.counter + 1,
-    velocity: level.velocity + 1
+  const levelUp = () => setGameParameters({
+    ...gameParameters,
+    counter: gameParameters.counter + 1,
+    speed: gameParameters.speed + 1
   })
 
-  const levelDown = () => setLevel({
-    ...level,
-    counter: level.counter - 1,
-    velocity: level.velocity - 1
+  const levelDown = () => setGameParameters({
+    ...gameParameters,
+    counter: gameParameters.counter - 1,
+    speed: gameParameters.speed - 1
   })
 
   const value = {
-    level,
+    gameParameters,
+    counterUp,
+    counterDown,
+    resetSpeed,
+    velocityUp,
+    velocityDown,
     levelUp,
     levelDown,
     setSecondsTimer,
-    selectLevel
+    selectLevel,
+    setLevel
   }
 
   return (
@@ -67,5 +95,3 @@ export const LevelProvider = ({ children }: Props) => {
     </LevelContext.Provider>
   )
 }
-
-// export default ContextLevel
