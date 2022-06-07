@@ -1,15 +1,26 @@
+// import { useEffect } from 'react'
 import useLevel from './useContextLevel'
-// import useTimer from './useTimer'
+import useDictaphone from './useDictaphone'
+import useProgressBar from './useProgressBar'
+import useTimer from './useTimer'
 import useWords from './useWords'
 
 const useStart = () => {
-  const { level } = useLevel()
-  // const seconds = 4 / (level.velocity + 1)
+  const { listening, resetTranscript, startListen, stopListen, transcript } = useDictaphone()
+  const [progress, increaseProgress, slowProgress] = useProgressBar()
+  const { gameParameters } = useLevel(progress)
+  const seconds = 4 / (gameParameters.speed)
 
   const [word, nextWord, isOnScreen, offScreen] = useWords()
-  // const { setIsReady } = useTimer(nextWord, offScreen, seconds)
+  const { setIsReady } = useTimer(nextWord, offScreen, seconds)
 
-  return { isOnScreen, word, nextWord /* setIsReady */ }
+  /* useEffect(() => {
+    if (transcript.includes(word.toLowerCase())) increaseProgress()
+    console.log(transcript.includes(word))
+    console.log(word)
+  }, [transcript, word]) */
+
+  return { isOnScreen, word, setIsReady, listening, resetTranscript, startListen, stopListen, transcript, progress }
 }
 
 export default useStart
