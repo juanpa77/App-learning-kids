@@ -83,6 +83,29 @@ const words = ['aire', 'coral', 'mismo',
   'duro', 'caña', 'pelo'
 ]
 
+const monoSyllable = [
+  ['MA', 'ME', 'MI', 'MO', 'MU'],
+  ['PA', 'PE', 'PI', 'PO', 'PU'],
+  ['LA', 'LE', 'LI', 'LO', 'LU'],
+  ['BA', 'BE', 'BI', 'BO', 'BU'],
+  ['NA', 'NE', 'NI', 'NO', 'NU'],
+  ['GA', 'GE', 'GI', 'GO', 'GU'],
+  ['SA', 'SE', 'SI', 'SO', 'SU'],
+  ['TA', 'TE', 'TI', 'TO', 'TU'],
+  ['DA', 'DE', 'DI', 'DO', 'DU'],
+  ['FA', 'FE', 'FI', 'FO', 'FU'],
+  ['JA', 'JE', 'JI', 'JO', 'JU'],
+  ['YA', 'YE', 'YI', 'YO', 'YU'],
+  ['VA', 'VE', 'VI', 'VO', 'VU']
+]
+const wordBySylablle = ['masa', 'como', 'mopa', 'dado', 'gafa', 'mesa', 'copo', 'moda', 'dedo', 'gala', 'misa', 'cono', 'mofa', 'dudo', 'gama', 'musa', 'coco', 'moña', 'gata', 'codo', 'moja', 'gasa', 'coso', 'mora', 'garra', 'coto', 'mota', 'gana', 'moza', 'paso', 'lana', 'maja', 'rana', 'lama', 'mala', 'rama', 'tapa', 'piso', 'lapa', 'maña', 'rata', 'tasa', 'poso', 'lata', 'mamá', 'raya', 'taza', 'puso', 'lava', 'mapa', 'raza', 'mata', 'maza', 'malla', 'casa', 'bola', 'bolo', 'bolsa', 'boca', 'supo', 'taco', 'tono', 'tito', 'tata', 'toto', 'baba', 'beso', 'caca', 'mito', 'lejos', 'foto', 'piza', 'pino', 'mano', 'faro', 'nene', 'nena', 'nena', 'yoro', 'toco', 'lazo', 'liso', 'tero', 'tiro', 'cata', 'buso', 'puro', 'puca', 'peso', 'pica', 'tema', 'tela', 'foca', 'foto', 'fama', 'filo', 'fico', 'fino', 'feo', 'feta', 'pelo', 'pero', 'pera', 'peca', 'popi', 'pomo', 'moco', 'leon', 'vuo']
+
+export const getWordBySyllable = () => wordBySylablle[randomNumber(wordBySylablle.length)]
+export const getMonoSyllable = () => {
+  const limit = monoSyllable.length
+  return monoSyllable[randomNumber(limit)]
+}
+
 export const limit = consonant.length
 const limitWord = words.length
 const limitSyllables = syllables.length
@@ -98,6 +121,10 @@ export const factoryWords = () => {
 
 const getRandomSyllable = () => {
   return prueba[randomNumber(limitSyllables)]
+}
+
+export const factoryRandomSyllable = () => {
+  return consonant[randomNumber(consonant.length)] + vowels[randomNumber(vowels.length)]
 }
 
 export const bySyllableGenerator = (): string[] => {
