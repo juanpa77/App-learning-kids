@@ -9,7 +9,7 @@ type props = {
 
 const Dictaphone = ({ listening, resetTranscript, transcript, startListening, stoptListening }: props) => {
   return (
-    <div>
+    <div style={{ gridArea: 'SP' }}>
       <p>Microphone: {listening ? 'on' : 'off'}</p>
       <button onClick={startListening}>Start</button>
       <button onClick={stoptListening}>Stop</button>

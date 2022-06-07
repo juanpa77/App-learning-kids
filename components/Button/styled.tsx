@@ -6,6 +6,7 @@ type Props = {
 }
 
 const Button = styled('button')`
+  align-self: center;
   height: 60px;
   width: 60px;
   border-radius: 50%;

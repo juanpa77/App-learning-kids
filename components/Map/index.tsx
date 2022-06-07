@@ -25,7 +25,7 @@ const level3 = css`
 type Props = {}
 
 const Map = (props: Props) => {
-  const [level, setLevel] = useState(1)
+  const [level] = useState(1)
 
   return (
     <Container>

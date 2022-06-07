@@ -4,6 +4,7 @@ type Props = {
   rotate?: string
   background?: string
   border?: string
+  // eslint-disable-next-line no-undef
   children?: JSX.Element
 }
 
