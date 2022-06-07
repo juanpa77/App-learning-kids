@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { colors } from '../../theme/colors'
 
 const borderRadius = '9px'
 
@@ -19,7 +20,7 @@ export const WrapperWord = styled('div')`
   border-radius: ${borderRadius};
 
   gap: 10px;
-  background-color: #ff3eb5;
+  background-color: ${colors.backGround};
   font-size: 35px;
 `
 export const WrapperControles = styled.div`
@@ -30,7 +31,7 @@ export const WrapperControles = styled.div`
   height: 94vh;
   padding: 15px;
   border-radius: ${borderRadius};
-  background-color: #ff3eb5;
+  background-color: ${colors.backGround};
     & > div {
       display: flex;
       flex-direction: column;

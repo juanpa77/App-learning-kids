@@ -14,7 +14,8 @@ import { LevelProvider } from '../../context/LevelContext'
 import useLevel from '../../hooks/useContextLevel'
 import { useEffect } from 'react'
 import Dictaphone from '../../components/SpeechRocognition'
-import useDictaphone from '../../hooks/useDictaphone'
+import ProgressBar from '../../components/ProgressBar'
+// import useDictaphone from '../../hooks/useDictaphone'
 
 /**
  *  Agregar efecto de destello corazones emoji icon, si es true el resultado de la comparacion caso contrario destello de dedito
@@ -23,17 +24,10 @@ import useDictaphone from '../../hooks/useDictaphone'
  */
 
 export default function LearnToRead () {
-  const { listening, resetTranscript, startListen, stopListen, transcript } = useDictaphone()
   const [isOpenModal, openModal, closeModal] = useModal(true)
   const { handleOptions, option } = useSelect()
-  const { level, levelDown, levelUp, selectLevel } = useLevel()
-  const { /* setIsReady, */ nextWord, word, isOnScreen } = useStart()
-
-  useEffect(() => {
-    if (transcript.includes(word.toLowerCase())) nextWord()
-    console.log(transcript.includes(word))
-    console.log(word)
-  }, [transcript, word])
+  const { gameParameters, levelDown, levelUp, selectLevel } = useLevel()
+  const { isOnScreen, word, setIsReady, listening, resetTranscript, startListen, stopListen, transcript, progress } = useStart()
 
   useEffect(() => {
     selectLevel(parseInt(option))
@@ -41,26 +35,27 @@ export default function LearnToRead () {
 
   const pause = () => {
     openModal()
-    // setIsReady(false)
+    setIsReady(false)
   }
 
   const start = () => {
-    console.log(option)
+    // console.log(option)
     closeModal()
-    // setIsReady(true)
+    setIsReady(true)
   }
 
   return (
     <LevelProvider>
       <AppLayout>
         <Wrapper>
-        <Dictaphone
-          transcript={transcript}
-          listening={listening}
-          resetTranscript={resetTranscript}
-          startListening={startListen}
-          stoptListening={stopListen}
-        />
+          <Dictaphone
+            transcript={transcript}
+            listening={listening}
+            resetTranscript={resetTranscript}
+            startListening={startListen}
+            stoptListening={stopListen}
+          />
+          <ProgressBar progress={progress}/>
           <WrapperWords>
             {isOpenModal ||
             (
@@ -85,7 +80,7 @@ export default function LearnToRead () {
             <Button onClick={pause}>pausa</Button>
             <div>
               <h3>Nivel</h3>
-              <Button>{level.counter}</Button>
+              <Button>{gameParameters.counter}</Button>
             </div>
             <div>
               <Button onClick={levelUp} >
