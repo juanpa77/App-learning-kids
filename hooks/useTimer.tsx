@@ -11,7 +11,7 @@ const useTimer = (nexAction: ()=> void, offScreen: ()=> void, interval: number) 
   useEffect(() => {
     if (isReady) {
       nexAction()
-      // if (counter > stopTimer) setCounter(0)
+      if (counter > 4) setCounter(0)
       const interval = setInterval(() => {
         setCounter(counter + 1)
         setTimeout(offScreen, secondOffScreen)

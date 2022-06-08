@@ -9,7 +9,7 @@ export const vowels: string[] = ['A', 'E', 'I', 'O', 'U']
 const consonant: string[] = ['B', 'C', 'D', 'F', 'G', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'P', 'R', 'S', 'T', 'V']
 
 const syllables = ['ma', 'me', 'mi', 'mo', 'mu', 'ra', 're', 'ri', 'ro', 'ru', 'ta', 'te', 'ti', 'to', 'tu']
-const words = ['aire', 'coral', 'mismo',
+const wordsArray = ['aire', 'coral', 'mismo',
   'arca',	'león', '	lesa',
   'percha',	'limbo', '	carta',
   'liebre',	'río', '	llave',
@@ -100,14 +100,21 @@ const monoSyllable = [
 ]
 const wordBySylablle = ['masa', 'como', 'mopa', 'dado', 'gafa', 'mesa', 'copo', 'moda', 'dedo', 'gala', 'misa', 'cono', 'mofa', 'dudo', 'gama', 'musa', 'coco', 'moña', 'gata', 'codo', 'moja', 'gasa', 'coso', 'mora', 'garra', 'coto', 'mota', 'gana', 'moza', 'paso', 'lana', 'maja', 'rana', 'lama', 'mala', 'rama', 'tapa', 'piso', 'lapa', 'maña', 'rata', 'tasa', 'poso', 'lata', 'mamá', 'raya', 'taza', 'puso', 'lava', 'mapa', 'raza', 'mata', 'maza', 'malla', 'casa', 'bola', 'bolo', 'bolsa', 'boca', 'supo', 'taco', 'tono', 'tito', 'tata', 'toto', 'baba', 'beso', 'caca', 'mito', 'lejos', 'foto', 'piza', 'pino', 'mano', 'faro', 'nene', 'nena', 'nena', 'yoro', 'toco', 'lazo', 'liso', 'tero', 'tiro', 'cata', 'buso', 'puro', 'puca', 'peso', 'pica', 'tema', 'tela', 'foca', 'foto', 'fama', 'filo', 'fico', 'fino', 'feo', 'feta', 'pelo', 'pero', 'pera', 'peca', 'popi', 'pomo', 'moco', 'leon', 'vuo']
 
-export const getWordBySyllable = () => wordBySylablle[randomNumber(wordBySylablle.length)]
+export const getWordBySyllable = () => {
+  const words: string[] = []
+  for (let i = 0; i < 6; i++) {
+    words.push(wordBySylablle[randomNumber(wordBySylablle.length)])
+  }
+  return words
+}
+
 export const getMonoSyllable = () => {
   const limit = monoSyllable.length
   return monoSyllable[randomNumber(limit)]
 }
 
 export const limit = consonant.length
-const limitWord = words.length
+const limitWord = wordsArray.length
 const limitSyllables = syllables.length
 
 export const syllableGenerator = (): string[] => {
@@ -116,7 +123,11 @@ export const syllableGenerator = (): string[] => {
 }
 
 export const factoryWords = () => {
-  return words[randomNumber(limitWord)]
+  const words: string[] = []
+  for (let i = 0; i < 6; i++) {
+    words.push(wordsArray[randomNumber(limitWord)])
+  }
+  return words
 }
 
 const getRandomSyllable = () => {
@@ -124,7 +135,11 @@ const getRandomSyllable = () => {
 }
 
 export const factoryRandomSyllable = () => {
-  return consonant[randomNumber(consonant.length)] + vowels[randomNumber(vowels.length)]
+  const syllables: string[] = []
+  for (let i = 0; i < 6; i++) {
+    syllables.push(consonant[randomNumber(consonant.length)] + vowels[randomNumber(vowels.length)])
+  }
+  return syllables
 }
 
 export const bySyllableGenerator = (): string[] => {
