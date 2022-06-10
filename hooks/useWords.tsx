@@ -20,23 +20,25 @@ const useWords = () => {
   }
 
   const nextWord = () => {
-    if (gameParameters.counter < 4) {
+    if (gameParameters.counter < 5) {
       setIsOnScreen(true)
-      setWord(syllable[pointCounter])
+      setWord(syllable[pointCounter].toLowerCase())
       nextSyllable()
+      // setWord(word.toLowerCase())
     }
-    if (gameParameters.counter >= 4) {
+    if (gameParameters.counter > 4) {
       setIsOnScreen(true)
-      setWord(factoryRandomSyllable)
+      setWord(factoryRandomSyllable().toLowerCase())
     }
     // setTimeout(offScreen, 1000)
-    if (gameParameters.counter > 6) {
+    if (gameParameters.counter > 7) {
       setIsOnScreen(true)
-      setWord(getWordBySyllable)
+      setWord(getWordBySyllable().toLowerCase())
     }
-    if (gameParameters.counter > 9) {
+    if (gameParameters.counter > 12) {
       setIsOnScreen(true)
       setWord(factoryWords)
+      // setWord(word.toLowerCase())
     }
   }
 

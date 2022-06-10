@@ -98,7 +98,17 @@ const monoSyllable = [
   ['YA', 'YE', 'YI', 'YO', 'YU'],
   ['VA', 'VE', 'VI', 'VO', 'VU']
 ]
+export const wordBySylablleWithSpacer = ['ma-ma', 'co-co', 'mo-mo', 'da-da', 'ga-ga', 'me-me', 'co-co', 'mo-mo', 'de-de', 'ga-ga', 'mi-mi', 'co-co', 'mo-mo', 'du-du', 'ga-ga', 'mu-mu', 'co-co', 'mo-mo', 'ga-ga', 'co-co', 'mo-mo', 'ga-ga', 'co-co', 'mo-mo', 'ga-ga', 'co-co', 'mo-mo', 'ga-ga', 'mo-mo', 'pa-pa', 'la-la', 'ma-ma', 'ra-ra', 'la-la', 'ma-ma', 'ra-ra', 'ta-ta', 'pi-pi', 'la-la', 'ma-ma', 'ra-ra', 'ta-ta', 'po-po', 'la-la', 'ma-ma', 'ra-ra', 'ta-ta', 'pu-pu', 'la-la', 'ma-ma', 'ra-ra', 'ma-ma', 'ma-ma', 'ma-ma', 'ca-ca', 'bo-bo', 'bo-bo', 'bo-bo', 'bo-bo', 'su-su', 'ta-ta', 'to-to', 'ti-ti', 'ta-ta', 'to-to', 'ba-ba', 'be-be', 'ca-ca', 'mi-mi', 'le-le', 'fo-fo', 'pi-pi', 'pi-pi', 'ma-ma', 'fa-fa', 'ne-ne', 'ne-ne', 'ne-ne', 'yo-yo', 'to-to', 'la-la', 'li-li', 'te-te', 'ti-ti', 'ca-ca', 'bu-bu', 'pu-pu', 'pu-pu', 'pe-pe', 'pi-pi', 'te-te', 'te-te', 'fo-fo', 'fo-fo', 'fa-fa', 'fi-fi', 'fi-fi', 'fi-fi', 'fe-fe', 'fe-fe', 'pe-pe', 'pe-pe', 'pe-pe', 'pe-pe', 'po-po', 'po-po', 'mo-mo', 'le-le', 'vu-vu']
 const wordBySylablle = ['masa', 'como', 'mopa', 'dado', 'gafa', 'mesa', 'copo', 'moda', 'dedo', 'gala', 'misa', 'cono', 'mofa', 'dudo', 'gama', 'musa', 'coco', 'moña', 'gata', 'codo', 'moja', 'gasa', 'coso', 'mora', 'garra', 'coto', 'mota', 'gana', 'moza', 'paso', 'lana', 'maja', 'rana', 'lama', 'mala', 'rama', 'tapa', 'piso', 'lapa', 'maña', 'rata', 'tasa', 'poso', 'lata', 'mamá', 'raya', 'taza', 'puso', 'lava', 'mapa', 'raza', 'mata', 'maza', 'malla', 'casa', 'bola', 'bolo', 'bolsa', 'boca', 'supo', 'taco', 'tono', 'tito', 'tata', 'toto', 'baba', 'beso', 'caca', 'mito', 'lejos', 'foto', 'piza', 'pino', 'mano', 'faro', 'nene', 'nena', 'nena', 'yoro', 'toco', 'lazo', 'liso', 'tero', 'tiro', 'cata', 'buso', 'puro', 'puca', 'peso', 'pica', 'tema', 'tela', 'foca', 'foto', 'fama', 'filo', 'fico', 'fino', 'feo', 'feta', 'pelo', 'pero', 'pera', 'peca', 'popi', 'pomo', 'moco', 'leon', 'vuo']
+export const newWordbySyllable = () => {
+  const newWord = wordBySylablle.map((word) => {
+    const subStringone = word.substring(0, 2)
+    const subStringtwo = word.substring(0, 2)
+    const newString = `${subStringone}'-'${subStringtwo}`
+    return newString
+  })
+  return newWord
+}
 
 export const getWordBySyllable = () => wordBySylablle[randomNumber(wordBySylablle.length)]
 export const getMonoSyllable = () => {
