@@ -6,43 +6,50 @@ const useWords = () => {
   const { gameParameters } = useLevel()
   const [isOnScreen, setIsOnScreen] = useState<boolean>(false)
   const offScreen = () => setIsOnScreen(false)
+  const [words, setWords] = useState<string[]>(getMonoSyllable)
   const [word, setWord] = useState('')
+  const [indexWords, setindexWords] = useState(0)
+  // const [syllable, setsyllable] = useState<string[]>(getMonoSyllable)
 
-  const [syllable, setsyllable] = useState<string[]>(getMonoSyllable)
-  const [pointCounter, setPointCounter] = useState(0)
-
-  const nextSyllable = () => {
+  /* const nextSyllable = () => {
     setPointCounter(pointCounter + 1)
     if (pointCounter > 3) {
       setsyllable(getMonoSyllable)
       setPointCounter(0)
     }
+  } */
+  const nextWord = () => {
+    if (indexWords > 3) {
+      newWords()
+      setindexWords(0)
+    }
+    setWord(words[indexWords])
+    setindexWords(indexWords + 1)
+    console.log(word, indexWords)
   }
 
-  const nextWord = () => {
-    if (gameParameters.counter < 5) {
+  const newWords = () => {
+    if (gameParameters.level === 1) {
       setIsOnScreen(true)
-      setWord(syllable[pointCounter].toLowerCase())
-      nextSyllable()
-      // setWord(word.toLowerCase())
+      setWords(getMonoSyllable)
+      // nextSyllable()
     }
-    if (gameParameters.counter > 4) {
+    if (gameParameters.level === 2) {
       setIsOnScreen(true)
-      setWord(factoryRandomSyllable().toLowerCase())
+      setWords(factoryRandomSyllable)
     }
     // setTimeout(offScreen, 1000)
-    if (gameParameters.counter > 7) {
+    if (gameParameters.level === 3) {
       setIsOnScreen(true)
-      setWord(getWordBySyllable().toLowerCase())
+      setWords(getWordBySyllable)
     }
-    if (gameParameters.counter > 12) {
+    if (gameParameters.level === 4) {
       setIsOnScreen(true)
-      setWord(factoryWords)
-      // setWord(word.toLowerCase())
+      setWords(factoryWords)
     }
   }
 
-  return [word, nextWord, isOnScreen, offScreen] as const
+  return [word, words, nextWord, isOnScreen, offScreen] as const
 }
 
 export default useWords

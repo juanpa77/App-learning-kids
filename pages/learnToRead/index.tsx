@@ -26,7 +26,7 @@ import ProgressBar from '../../components/ProgressBar'
 export default function LearnToRead () {
   const [isOpenModal, openModal, closeModal] = useModal(true)
   const { handleOptions, option } = useSelect()
-  const { gameParameters, levelDown, levelUp, selectLevel } = useLevel()
+  const { gameParameters, speedDown, speedUp, selectLevel } = useLevel()
   const { isOnScreen, word, setIsReady, listening, resetTranscript, startListen, stopListen, transcript, progress } = useStart()
 
   useEffect(() => {
@@ -36,12 +36,13 @@ export default function LearnToRead () {
   const pause = () => {
     openModal()
     setIsReady(false)
+    stopListen()
   }
 
   const start = () => {
-    // console.log(option)
     closeModal()
     setIsReady(true)
+    startListen()
   }
 
   return (
@@ -80,13 +81,13 @@ export default function LearnToRead () {
             <Button onClick={pause}>pausa</Button>
             <div>
               <h3>Nivel</h3>
-              <Button>{gameParameters.counter}</Button>
+              <Button>{gameParameters.level}</Button>
             </div>
             <div>
-              <Button onClick={levelUp} >
+              <Button onClick={speedUp} >
                 +
               </Button>
-              <Button onClick={levelDown} >
+              <Button onClick={speedDown} >
                 -
               </Button>
             </div>

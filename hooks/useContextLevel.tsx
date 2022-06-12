@@ -3,10 +3,10 @@ import { useContext, useEffect } from 'react'
 import { LevelContext } from '../context/LevelContext'
 
 const useLevel = (progress?: number) => {
-  const { gameParameters, levelDown, levelUp, selectLevel, resetSpeed, setLevel } = useContext(LevelContext)
+  const { gameParameters, selectLevel, resetSpeed, setLevel } = useContext(LevelContext)
 
   useEffect(() => resetSpeed(), [gameParameters.level])
-  
+
   useEffect(() => {
     if (gameParameters.speed === 0) resetSpeed()
     console.log(gameParameters)
@@ -27,7 +27,7 @@ const useLevel = (progress?: number) => {
     console.log(progressBar)
   }, [gameParameters.counter])
 
-  return { gameParameters, levelDown, levelUp, selectLevel, resetSpeed }
+  return { gameParameters, selectLevel, resetSpeed }
 }
 
 export default useLevel

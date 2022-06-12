@@ -14,7 +14,7 @@ const useDictaphone = (): dictaphone => {
     resetTranscript
   } = useSpeechRecognition()
 
-  const startListen = () => SpeechRecognition.startListening({ continue: true, languague: 'es-UY' })
+  const startListen = () => SpeechRecognition.startListening({ continuous: true, language: 'es-UY' })
   const stopListen = () => SpeechRecognition.stopListening()
 
   return { transcript, listening, startListen, stopListen, resetTranscript }
