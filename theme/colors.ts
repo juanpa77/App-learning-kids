@@ -4,3 +4,5 @@ export const colors = {
   backGround: '#ff3eb5',
   darkTransparency: '#6b618b64'
 }
+
+export const border = '9px'

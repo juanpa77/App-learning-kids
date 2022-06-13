@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import randomNumber from '../services/math'
 import { getWordBySyllable, factoryWords, getMonoSyllable, factoryRandomSyllable } from '../services/syllablesFactory'
 import useLevel from './useContextLevel'
 
@@ -7,7 +8,7 @@ const useWords = () => {
   const [isOnScreen, setIsOnScreen] = useState<boolean>(false)
   const offScreen = () => setIsOnScreen(false)
   const [words, setWords] = useState<string[]>(getMonoSyllable)
-  const [word, setWord] = useState('')
+  const [word, setWord] = useState(words[randomNumber(words.length)])
   const [indexWords, setindexWords] = useState(0)
   // const [syllable, setsyllable] = useState<string[]>(getMonoSyllable)
 
@@ -49,7 +50,7 @@ const useWords = () => {
     }
   }
 
-  return [word, words, nextWord, isOnScreen, offScreen] as const
+  return { word, words, newWords, nextWord, isOnScreen, offScreen }
 }
 
 export default useWords

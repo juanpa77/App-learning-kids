@@ -5,7 +5,7 @@ export const wordAnimate = {
     y: 600,
     x: 0
   },
-  open: ([x, y]) => ({
+  show: ([x, y]) => ({
     opacity: 1,
     scale: 3,
     y,
@@ -20,12 +20,24 @@ export const wordAnimate = {
       x: 100
     }
   }),
-  closed: {
+  hident: {
     opacity: 0,
     y: 600,
     x: 0,
     transition: {
       duration: 0.5
     }
+  }
+}
+
+export const showOption = {
+  show: {
+    opacity: 1,
+    scale: 2
+    /* animate: {
+    } */
+  },
+  hident: {
+    opacity: 0
   }
 }
