@@ -1,49 +1,50 @@
-
-import Card from '../Card/styled'
-import Path from './Path/path'
-import { css } from '@emotion/react'
-import Container from './styled'
-import { stepsGenerator } from '../../services/arrayGenerator'
-import Link from 'next/link'
 import { useState } from 'react'
+import { useModal } from '../../hooks/useModal'
+import { newMap } from '../../services/arrayGenerator'
+import Dice from '../Dice'
+import { Modal } from '../modal'
+import Player from '../Player'
+import Background from './background'
+import Ladder from './ladder'
+import MapWrapper, { GridLadder, RowWrapper, Square } from './styled'
 
-const size = css`
-  width: 100px;
-  height: 100px;
-  grid-area: C1;
-`
-const size2 = css`
-  width: 100px;
-  height: 100px;
-  grid-area: C2;
-`
-const level3 = css`
-  width: 100px;
-  height: 100px;
-  grid-area: C3;
-`
-type Props = {}
-
-const Map = (props: Props) => {
-  const [level] = useState(1)
-
+const Map = () => {
+  const numberOfSquare = newMap(19, 4)
+  const [squarePlayer, setSquarePlayer] = useState(0)
+  const [isOpenModal, openModal, closeModal] = useModal(true)
+  console.log(newMap(19, 4))
   return (
-    <Container>
-      <Link href={'./learnToRead'}>
-        <Card color='rgba(222, 0, 147, 0.84)' css={size}>
-          <p>prueba1</p>
-        </Card>
-      </Link>
-      <Path steps={stepsGenerator(4)} gridArea='ST' display='flex' level={level}>
-      </Path>
-      <Card color='rgba(222, 0, 147, 0.84)' css={size2}>
-        <p>prueba</p>
-      </Card>
-      <Path steps={stepsGenerator(4)} gridArea='S2' rotate='rotate(-90)' display='flex' direction='column-reverse' level={level}/>
-      <Card color='rgba(222, 0, 147, 0.84)' css={level3}>
-        <p>prueba3</p>
-      </Card>
-    </Container>
+    <>
+    <Background>
+      <GridLadder>
+          <Ladder />
+      </GridLadder>
+    </Background>
+    <MapWrapper>
+      {numberOfSquare.map((row, i) => {
+        return (
+          <RowWrapper key={i}>
+            {row.map((square) => {
+              return (
+                <Square
+                  key={square.number}
+                  backgroundColor={square.color}
+                  size={square.size}
+                  align={square.align}
+                >
+                  {square.number === squarePlayer && <Player />}
+                  {square.number}
+                </Square>
+              )
+            })}
+          </RowWrapper>
+        )
+      })}
+    </MapWrapper>
+    <Modal isOpenModal={isOpenModal}>
+      <Dice />
+    </Modal>
+    </>
   )
 }
 
