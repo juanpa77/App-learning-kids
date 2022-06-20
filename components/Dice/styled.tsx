@@ -28,11 +28,11 @@ export const Front = styled(Side)`
 `
 export const Right = styled(Side)`
   transform: rotateY(90deg) translateZ(50px);
-  background-color: #ffcc00;
+  background-color: #f9f1d0;
 `
 export const Back = styled(Side)`
   transform: rotateY(180deg) translateZ(50px);
-  background-color: #ff0055;
+  background-color: #b2bb0a;
 `
 export const Left = styled(Side)`
   transform: rotateY(-90deg) translateZ(50px);
