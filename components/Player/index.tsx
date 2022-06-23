@@ -1,19 +1,21 @@
 import { AnimationControls, motion } from 'framer-motion'
-import Move, { playerJump } from './variant'
+import { playerJump } from './variant'
 
-type Props = {
-  jumpCoordinates?: {
-    x: number
-    y: number
-  }
-  custom: Move
-  control: AnimationControls
+export interface Coordinates {
+  x: number[]
+  y: number[]
 }
 
-const Player = ({ control, custom }: Props) => {
+type Props = {
+  custom: Coordinates
+  control: AnimationControls
+  init: string
+}
+
+const Player = ({ control, custom, init }: Props) => {
   return (
     <motion.div
-    initial={'init'}
+    initial={init}
     variants={playerJump}
     animate={control}
     custom={custom}
