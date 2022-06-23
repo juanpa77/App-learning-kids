@@ -1,39 +1,42 @@
 import { useAnimation } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useModal } from '../../hooks/useModal'
 import { newMap } from '../../services/arrayGenerator'
 import Button from '../Button/styled'
 import WrapperCard from '../Card/wrapper'
-import Dice, { StartHandle } from '../Dice'
+import Dice from '../Dice'
 import { Modal } from '../modal'
 import Player from '../Player'
+import MovePlayer from '../Player/motionControl'
 import Background from './background'
+import useDice from './hooks/useDice'
 import Ladder from './ladder'
 import MapWrapper, { GridLadder, RowWrapper, Square } from './styled'
 
 const Map = () => {
-  // console.log(newMap(19, 4))
-  const numberOfSquare = newMap(19, 4)
-  const [squarePlayer, setSquarePlayer] = useState(0)
-  const [isOpenModal, openModal, closeModal] = useModal(false)
+  const player1 = useMemo(() => new MovePlayer(), [])
+  const numberOfSquare = useMemo(() => newMap(19, 4), [])
   const control = useAnimation()
-  const diceRef = useRef<StartHandle>()
-  const [resultRollDice, setResultRollDice] = useState(1)
-  console.log(resultRollDice)
-  // useEffect(() => setResultRollDice(diceRef.current?.resultRollDice), [diceRef.current?.play])
+  const { togglePlay, resultRollDice, rotateDice } = useDice()
+  const [isOpenModal, openModal, closeModal] = useModal(false)
+  const [squarePlayer, setSquarePlayer] = useState(0)
+
   useEffect(() => control.set('playerJump'), [])
+
   const throwDice = () => {
     openModal()
-    diceRef.current?.togglePlay()
+    togglePlay()
   }
   const stopDice = () => {
-    diceRef.current?.togglePlay()
-    setSquarePlayer(squarePlayer + diceRef.current?.resultRollDice)
-    setResultRollDice(diceRef.current?.resultRollDice)
+    togglePlay()
   }
-  const test = () => {
+  const movePlayer = () => {
     closeModal()
-    setTimeout(() => control.start('up'), 1000)
+    player1.movePlayer(squarePlayer, resultRollDice)
+    control.start('up')
+    setSquarePlayer(squarePlayer + resultRollDice)
+    player1.resetCoordinates()
+    console.log(resultRollDice)
   }
 
   return (
@@ -55,7 +58,7 @@ const Map = () => {
                   size={square.size}
                   align={square.align}
                 >
-                  {square.number === 1 && <></>}
+                  {/* {square.number === 1 && <></>} */}
                   {square.number}
                 </Square>
               )
@@ -63,16 +66,17 @@ const Map = () => {
           </RowWrapper>
         )
       })}
-      {<Player control={control} custom={{ squarePlayer, resultRollDice }}/>}
+      {<Player init='init' control={control} custom={{ x: player1.coordinatesX, y: player1.coordinatesY }}/>}
+      {/* {<Player init='test' control={control2} custom={{ squarePlayer, resultRollDice }}/>} */}
       <WrapperCard height='100px' width='380px' color='#ff737e'>
         <Button onClick={throwDice}> Play </Button>
       </WrapperCard>
     </MapWrapper>
     <Modal isOpenModal={isOpenModal}>
-      <Dice ref={diceRef} />
-      <div>
+      <Dice rotateDice={rotateDice} />
+      <div >
         <Button onClick={stopDice}> Stop </Button>
-        <Button onClick={test}> close </Button>
+        <Button onClick={movePlayer}> close </Button>
       </div>
     </Modal>
     </>
