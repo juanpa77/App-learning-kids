@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react'
 
-const useTimer = (nexAction: ()=> void, offScreen: ()=> void, interval: number) => {
+export type Timer = {
+  nexAction: () => void
+  offScreen?: () => void
+  interval?: number
+}
+
+const useTimer = ({ nexAction, offScreen, interval }: Timer) => {
   const [counter, setCounter] = useState(0)
   const [isReady, setIsReady] = useState(false)
   const resetCounter = () => setCounter(0)

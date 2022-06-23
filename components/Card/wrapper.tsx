@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { border } from '../../theme/colors'
 
 type Props = {
   width?: string
@@ -12,5 +13,6 @@ const WrapperCard = styled('div')`
   width: ${(props: Props) => props.width};
   height: ${(props: Props) => props.height};
   padding: 5px;
+  border-radius: ${border};
 `
 export default WrapperCard

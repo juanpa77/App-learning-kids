@@ -2,11 +2,7 @@ import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import { colors } from '../../theme/colors'
 
-type ModalProps = {
-  isOpen: boolean
-}
-
-const Container = styled(motion.div)<ModalProps>`
+const Container = styled(motion.div)`
   position: fixed;
   z-index: 99;
   top: 0;
@@ -15,7 +11,7 @@ const Container = styled(motion.div)<ModalProps>`
   height: 100vh;
   gap: 8px;
   background-color: rgba(0, 0, 0, 0.75);
-  display: ${(props: ModalProps) => props.isOpen ? 'grid' : 'none'};
+  display: grid;
   align-content: center;
   align-items: center;
   justify-content: center;

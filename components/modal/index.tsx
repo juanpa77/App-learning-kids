@@ -5,17 +5,16 @@ export interface Props {
   children: ReactNode
   isOpenModal: boolean
   text?: string
-  className?: string
 }
 
-export const Modal = ({ children, isOpenModal, text, className }: Props) => {
+export const Modal = ({ children, isOpenModal, text }: Props) => {
   return (
     <>
-      {isOpenModal &&
-       <Container isOpen={isOpenModal} animate={{ scale: 2 }} transition={{ duration: 0.5 }} >
-          {children}
-          {text}
-      </Container>}
+    {isOpenModal &&
+    <Container animate={{ scale: 2 }} transition={{ duration: 0.5 }} >
+      {children}
+      {text}
+    </Container>}
     </>
   )
 }

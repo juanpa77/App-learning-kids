@@ -27,7 +27,12 @@ export default function ChooseCorrectWord () {
     <AppLayout>
       <WrapperWords>
         <WrapperWord width='70%'>
-          <MoleWord word={word} area={'W'} isOnScreen={true} variantAnimate={showOption}/>
+          <MoleWord
+            word={word}
+            area={'W'}
+            isOnScreen={true}
+            variantAnimate={showOption}
+          />
         </WrapperWord>
         <WordsOptionWrapper color='#FFFFFF80' width='70%'>
           {[...Array(optionNumber)].map((option, i) => {
