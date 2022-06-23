@@ -1,5 +1,5 @@
 import { MutableRefObject, useEffect, useState } from 'react'
-import useTimer from '../../../hooks/useTimer'
+import useTimer from '../../hooks/useTimer'
 
 const useDice = () => {
   const { counter, setIsReady } = useTimer({ interval: 0.1, nexAction: () => {} })
@@ -43,6 +43,7 @@ const useDice = () => {
     if (position.x < -999) {
       setResultRollDice(6)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [counter])
 
   return {

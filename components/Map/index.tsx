@@ -9,7 +9,7 @@ import { Modal } from '../modal'
 import Player from '../Player'
 import MovePlayer from '../Player/motionControl'
 import Background from './background'
-import useDice from './hooks/useDice'
+import useDice from '../Dice/useDice'
 import Ladder from './ladder'
 import MapWrapper, { GridLadder, RowWrapper, Square } from './styled'
 
