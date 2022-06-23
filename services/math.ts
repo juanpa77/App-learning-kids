@@ -1,6 +1,8 @@
 
 const randomNumber = (numberLimit: number) => {
-  return Math.floor((Math.random() * numberLimit))
+  const test = Math.floor((Math.random() * numberLimit))
+  console.log(test)
+  return test
 }
 
 export default randomNumber
